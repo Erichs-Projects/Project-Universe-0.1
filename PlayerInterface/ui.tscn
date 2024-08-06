@@ -1,0 +1,283 @@
+[gd_scene load_steps=5 format=3 uid="uid://dhbvorj4lqnde"]
+
+[ext_resource type="Script" path="res://PlayerInterface/ui.gd" id="1_ua4vt"]
+[ext_resource type="Theme" uid="uid://cmqfi1x81t14h" path="res://graphics/Texture/themes/TextAndHovertheme.tres" id="2_duarh"]
+[ext_resource type="Texture2D" uid="uid://bnk8a04qieqsc" path="res://graphics/Texture/menu_box_1.png" id="2_pe3ui"]
+[ext_resource type="FontFile" uid="uid://dv0dtuuvlgalx" path="res://graphics/fonts/upheavtt.ttf" id="3_ejvav"]
+
+[node name="Ui" type="CanvasLayer"]
+script = ExtResource("1_ua4vt")
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+grow_vertical = 2
+scale = Vector2(1.3, 1.3)
+size_flags_horizontal = 0
+theme = ExtResource("2_duarh")
+
+[node name="MenuBar" type="MenuBar" parent="Control"]
+layout_mode = 0
+offset_top = -145.0
+offset_right = 209.0
+offset_bottom = 138.0
+metadata/_edit_use_anchors_ = true
+
+[node name="AttackSubUI" type="NinePatchRect" parent="Control/MenuBar"]
+visible = false
+self_modulate = Color(0.945098, 0.537255, 0, 1)
+layout_mode = 0
+offset_left = 207.0
+offset_top = -64.0
+offset_right = 402.0
+offset_bottom = 274.0
+texture = ExtResource("2_pe3ui")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="GridContainer" type="GridContainer" parent="Control/MenuBar/AttackSubUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -20.0
+offset_right = 86.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Power Up" type="Button" parent="Control/MenuBar/AttackSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Power Up Maneuver"
+
+[node name="Sig" type="Button" parent="Control/MenuBar/AttackSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Signature Technique"
+
+[node name="Transformation" type="Button" parent="Control/MenuBar/AttackSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Transformation"
+
+[node name="Aura" type="Button" parent="Control/MenuBar/AttackSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Aura Maneuver"
+
+[node name="Recovery" type="Button" parent="Control/MenuBar/AttackSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Combat Recovery"
+
+[node name="Command" type="Button" parent="Control/MenuBar/AttackSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Command
+"
+
+[node name="Empower" type="Button" parent="Control/MenuBar/AttackSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Empower"
+
+[node name="Energy Charge" type="Button" parent="Control/MenuBar/AttackSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Energy Charge"
+
+[node name="Grapple" type="Button" parent="Control/MenuBar/AttackSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Grapple Maneuver"
+
+[node name="Pin" type="Button" parent="Control/MenuBar/AttackSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Pin Maneuver"
+
+[node name="Throw" type="Button" parent="Control/MenuBar/AttackSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Throw Maneuver"
+
+[node name="Thrust" type="Button" parent="Control/MenuBar/AttackSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Thrust Maneuver"
+
+[node name="InstantSubUI" type="NinePatchRect" parent="Control/MenuBar"]
+visible = false
+self_modulate = Color(0, 0.623529, 0.819608, 1)
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 209.0
+offset_top = -109.5
+offset_right = 357.0
+offset_bottom = 93.5
+grow_vertical = 2
+texture = ExtResource("2_pe3ui")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="Control/MenuBar/InstantSubUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -62.5
+offset_top = -93.0
+offset_right = 64.5
+offset_bottom = 92.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Called Shot" type="Button" parent="Control/MenuBar/InstantSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Called Shot"
+
+[node name="NoEffort" type="Button" parent="Control/MenuBar/InstantSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "No Effort"
+
+[node name="Revert" type="Button" parent="Control/MenuBar/InstantSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Revert"
+
+[node name="Surge" type="Button" parent="Control/MenuBar/InstantSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Surge"
+
+[node name="TerrainLift" type="Button" parent="Control/MenuBar/InstantSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Terrain Lift"
+
+[node name="Trigger" type="Button" parent="Control/MenuBar/InstantSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Trigger
+"
+
+[node name="United Attack" type="Button" parent="Control/MenuBar/InstantSubUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "United Attack"
+
+[node name="MainUI" type="NinePatchRect" parent="Control/MenuBar"]
+self_modulate = Color(0.156863, 0.156863, 0.156863, 1)
+layout_mode = 0
+offset_left = 14.0
+offset_top = 5.0
+offset_right = 206.0
+offset_bottom = 287.0
+texture = ExtResource("2_pe3ui")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="Control/MenuBar/MainUI"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -86.0
+offset_top = -20.0
+offset_right = 86.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="Boosted Speed" type="CheckButton" parent="Control/MenuBar/MainUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+theme_override_font_sizes/font_size = 13
+text = "Boosted Speed"
+
+[node name="Movement" type="Button" parent="Control/MenuBar/MainUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Movement Maneuver"
+
+[node name="Attack" type="Button" parent="Control/MenuBar/MainUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+toggle_mode = true
+text = "Attacking Maneuver"
+
+[node name="Standard" type="Button" parent="Control/MenuBar/MainUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+toggle_mode = true
+text = "Standard Maneuver
+"
+
+[node name="Instant" type="Button" parent="Control/MenuBar/MainUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+toggle_mode = true
+text = "Instant Maneuver"
+
+[node name="Character" type="Button" parent="Control/MenuBar/MainUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+toggle_mode = true
+text = "Character Info"
+
+[node name="ScaleUp" type="Button" parent="Control/MenuBar/MainUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Scale UI UP"
+
+[node name="ScaleDown" type="Button" parent="Control/MenuBar/MainUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Scale UI Down
+"
+
+[node name="Ui button" type="Button" parent="Control/MenuBar/MainUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Ui off"
+
+[node name="MenuButton" type="Button" parent="Control/MenuBar/MainUI/GridContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_ejvav")
+text = "Main Menu
+"
+
+[connection signal="toggled" from="Control/MenuBar/MainUI/GridContainer/Boosted Speed" to="." method="_on_check_button_toggled"]
+[connection signal="pressed" from="Control/MenuBar/MainUI/GridContainer/Movement" to="." method="_on_movement_pressed"]
+[connection signal="toggled" from="Control/MenuBar/MainUI/GridContainer/Attack" to="." method="_on_attack_toggled"]
+[connection signal="toggled" from="Control/MenuBar/MainUI/GridContainer/Standard" to="." method="_on_standard_toggled"]
+[connection signal="toggled" from="Control/MenuBar/MainUI/GridContainer/Instant" to="." method="_on_instant_toggled"]
+[connection signal="toggled" from="Control/MenuBar/MainUI/GridContainer/Character" to="." method="_on_character_toggled"]
+[connection signal="pressed" from="Control/MenuBar/MainUI/GridContainer/ScaleUp" to="." method="_on_scale_up_pressed"]
+[connection signal="pressed" from="Control/MenuBar/MainUI/GridContainer/ScaleDown" to="." method="_on_scale_down_pressed"]
+[connection signal="pressed" from="Control/MenuBar/MainUI/GridContainer/Ui button" to="." method="_on_ui_button_pressed"]
+[connection signal="pressed" from="Control/MenuBar/MainUI/GridContainer/MenuButton" to="." method="_on_menu_button_pressed"]

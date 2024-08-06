@@ -1,0 +1,24 @@
+[gd_resource type="Theme" load_steps=4 format=3 uid="uid://cmqfi1x81t14h"]
+
+[ext_resource type="FontFile" uid="uid://dv0dtuuvlgalx" path="res://graphics/fonts/upheavtt.ttf" id="1_rkqow"]
+[ext_resource type="FontFile" uid="uid://b0cmrq2o3i227" path="res://graphics/fonts/calibrib.ttf" id="2_bq6e5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_up1mg"]
+bg_color = Color(0, 0.666667, 0.811765, 0.752941)
+
+[resource]
+Button/colors/font_color = Color(0.8, 0.8, 0.8, 1)
+Button/colors/font_hover_color = Color(1, 0.411765, 0, 1)
+Button/colors/font_pressed_color = Color(0.87451, 0.886275, 0.533333, 1)
+Button/fonts/font = ExtResource("1_rkqow")
+Label/colors/font_color = Color(0.8, 0.8, 0.8, 1)
+Label/fonts/font = ExtResource("2_bq6e5")
+LineEdit/colors/font_color = Color(0.8, 0.8, 0.8, 1)
+RichTextLabel/colors/default_color = Color(0.8, 0.8, 0.8, 1)
+RichTextLabel/constants/line_separation = 6
+RichTextLabel/fonts/bold_font = ExtResource("2_bq6e5")
+RichTextLabel/fonts/bold_italics_font = ExtResource("2_bq6e5")
+RichTextLabel/fonts/italics_font = ExtResource("2_bq6e5")
+RichTextLabel/fonts/mono_font = ExtResource("2_bq6e5")
+RichTextLabel/fonts/normal_font = ExtResource("2_bq6e5")
+TooltipPanel/styles/panel = SubResource("StyleBoxFlat_up1mg")
