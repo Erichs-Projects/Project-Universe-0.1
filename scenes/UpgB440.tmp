@@ -1,0 +1,1742 @@
+[gd_scene load_steps=7 format=3 uid="uid://cwjpn28xeu42f"]
+
+[ext_resource type="Texture2D" uid="uid://bnk8a04qieqsc" path="res://graphics/Texture/menu_box_1.png" id="1_bvwtd"]
+[ext_resource type="FontFile" uid="uid://dv0dtuuvlgalx" path="res://graphics/fonts/upheavtt.ttf" id="1_k0dk3"]
+[ext_resource type="Theme" uid="uid://cmqfi1x81t14h" path="res://graphics/Texture/themes/TextAndHovertheme.tres" id="1_s0spi"]
+[ext_resource type="Script" path="res://scripts/UpgradeMenuScript.gd" id="2_ip36o"]
+[ext_resource type="Script" path="res://scenes/TabManager.gd" id="5_7cv70"]
+
+[sub_resource type="Theme" id="Theme_je46j"]
+
+[node name="UpgradeMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_s0spi")
+script = ExtResource("2_ip36o")
+
+[node name="BackgroundIMG" type="NinePatchRect" parent="."]
+self_modulate = Color(0.156863, 0.156863, 0.156863, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_bvwtd")
+patch_margin_left = 5
+patch_margin_top = 5
+patch_margin_right = 5
+patch_margin_bottom = 5
+
+[node name="Talent Menu" type="Label" parent="BackgroundIMG"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.298969
+anchor_top = 0.015873
+anchor_right = 0.681701
+anchor_bottom = 0.0615079
+offset_left = 1.52588e-05
+theme_override_fonts/font = ExtResource("1_k0dk3")
+theme_override_font_sizes/font_size = 25
+text = "Talent Upgrades!"
+horizontal_alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ButtonGrid" type="TabContainer" parent="BackgroundIMG"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0390625
+anchor_top = 0.0796296
+anchor_right = 0.960938
+anchor_bottom = 0.888889
+theme = ExtResource("1_s0spi")
+drag_to_rearrange_enabled = true
+script = ExtResource("5_7cv70")
+metadata/_edit_use_anchors_ = true
+
+[node name="Adaptation Talents" type="ScrollContainer" parent="BackgroundIMG/ButtonGrid"]
+layout_mode = 2
+
+[node name="AdaptationTalents2" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid/Adaptation Talents"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme = SubResource("Theme_je46j")
+
+[node name="AdeptWarrior" type="Button" parent="BackgroundIMG/ButtonGrid/Adaptation Talents/AdaptationTalents2"]
+layout_mode = 2
+theme = ExtResource("1_s0spi")
+toggle_mode = true
+text = "Adept Warrior"
+
+[node name="AdeptWDescription" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Adaptation Talents/AdaptationTalents2" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+theme = ExtResource("1_s0spi")
+text = "Skilled at making the most of your size, you know how to hit opponents where their guard is down.
+–Prerequisites: Base Size Category that is not Medium, or access to a Transformation with the Growth Aspect, or access to the Shapeshift Unique Ability, or access to Metamorphosis
+-[Passive]: Increase your Wound Rolls against an Opponent with a larger Size Category than you by 2(T) and increase your Strike Rolls against an Opponent with a smaller Size Category than you by 1(T).
+-[Triggered, 1/Round]: If you are hit by an Opponent’s Attacking Maneuver that benefits from the Punching Down rules, do not apply that bonus to this Attacking Maneuver.
+-[Triggered, 1/Round]: If you fail to hit an Opponent with an Attacking Maneuver that would benefit from the Punching Down rules, roll the Extra Dice from Punching Down regardless. Reduce that Opponent’s Life Points by that amount."
+fit_content = true
+
+[node name="CombatExpertise" type="Button" parent="BackgroundIMG/ButtonGrid/Adaptation Talents/AdaptationTalents2"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Combat Expertise"
+
+[node name="CEDescription" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Adaptation Talents/AdaptationTalents2" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = " Able to adjust your stance to focus on offense or defense, your ability to adapt is second to none.
+–Prerequisites: N/A
+-[Triggered/Start of Turn]: Reduce your Awareness or Defense Value by up to 2(bT) to increase your Defense Value or Awareness (respectively) by the reduction until the start of your next turn.
+-[Triggered, 1/Round]: When making a Combat Roll as part of an Attacking Maneuver, or in response to an Attacking Maneuver that targets you, gain Greater Dice on that Combat Roll."
+fit_content = true
+
+[node name="Attacking Talents" type="ScrollContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="AttackingTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid/Attacking Talents"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="AggressiveStyle" type="Button" parent="BackgroundIMG/ButtonGrid/Attacking Talents/AttackingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Aggressive Style"
+
+[node name="Desc" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Attacking Talents/AttackingTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "Leaning into your offensive skill, you sacrifice defense to ensure your blows cripple their targets.
+–Prerequisites: Combat Expertise, Insight Score of 5+
+-[Triggered]: If you reduce your Defense Value by at least 1(bT) through the first effect of Combat Expertise, increase your Awareness by an additional 1(bT).
+-[Triggered, 2/Round]: If you hit an Opponent with an Attacking Maneuver, reduce your Critical Target for the Strike and Wound Rolls of any Attacking Maneuvers you make by 1 until the end of your turn."
+fit_content = true
+
+[node name="ArtfulStrike" type="Button" parent="BackgroundIMG/ButtonGrid/Attacking Talents/AttackingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Artful Strike"
+
+[node name="Desc2" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Attacking Talents/AttackingTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "Masterfully able to weave through an opponent’s defense, you catch them unaware.
+–Prerequisites: Combat Expertise
+-[Triggered, 1/Round]: When you declare an Attacking Maneuver, you can spend 3(bT) Ki Points to double the penalty that all targets are suffering from Diminishing Defense for the duration of this Attacking Maneuver.
+-[Triggered, 1/Round]: If you would make an Attacking Maneuver and have used the Movement Maneuver or an Attacking Maneuver with the Charging Assault Advantage this Combat Round, gain Greater Dice on your Strike Roll for that Attacking Maneuver."
+fit_content = true
+
+[node name="FocusedStrike" type="Button" parent="BackgroundIMG/ButtonGrid/Attacking Talents/AttackingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Focused Strike"
+
+[node name="Desc3" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Attacking Talents/AttackingTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "Able to pinpoint weak points in a target’s defense, your attacks hone in on the least guarded parts of the opponent’s body to land strikes consistently.
+–Prerequisites: Artful Strike
+-[Passive]: Roll your Base Die twice for any Strike Roll and use the highest result.
+-[Passive]: Reduce the Critical Target of your Strike Rolls by 1."
+fit_content = true
+
+[node name="MasterfulStrike" type="Button" parent="BackgroundIMG/ButtonGrid/Attacking Talents/AttackingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Masterful Strike"
+
+[node name="Desc4" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Attacking Talents/AttackingTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "You are able to recover your momentum even when you miss, surprising your opponent with a strike that lands.
+–Prerequisites: Artful Strike, Tier of Power 3+
+-[Triggered, 1/Round]: If you fail to hit an Opponent with an Attacking Maneuver, reroll your Strike Roll and apply it against the same roll you lost against.
+-[1/Encounter]: As an Instant Maneuver you may activate this effect: until the end of your turn, ignore all penalties to your Strike Rolls."
+fit_content = true
+
+[node name="PowerfulStrike" type="Button" parent="BackgroundIMG/ButtonGrid/Attacking Talents/AttackingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Powerful Strike"
+
+[node name="Desc5" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Attacking Talents/AttackingTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "Though less accurate, your attacks are far more powerful.
+–Prerequisites: Combat Expertise, Force or Magic Score of 5+
+-[Triggered, 1/Round]: When making an Attacking Maneuver, you can reduce your Strike Roll by 1(T) to increase your Wound Roll by 3(T).
+-[Passive]: Reduce the Critical Target of your Wound Rolls by 1."
+fit_content = true
+
+[node name="Blaster Talents" type="ScrollContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="BlasterTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid/Blaster Talents"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="CloseRangeShot" type="Button" parent="BackgroundIMG/ButtonGrid/Blaster Talents/BlasterTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Close Range Shot"
+
+[node name="Desc" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Blaster Talents/BlasterTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "Slipping in past your enemy’s reach, you unleash your energy blasts directly without fear of reprisal.
+–Prerequisites: N/A
+-[Passive]: When making an Unarmed Energy or Magic Attack within the Melee Range of a target, increase the Wound Rolls for that Attacking Maneuver against that target by 2(T).
+-[Triggered, 1/Round]: If you are in the Square adjacent to a target when you hit an Opponent with an Unarmed Energy or Magic Attack, make a Might Clash against that target after the Wound Roll. If you win, the target is knocked Prone."
+fit_content = true
+
+[node name="FarShot" type="Button" parent="BackgroundIMG/ButtonGrid/Blaster Talents/BlasterTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Far Shot"
+
+[node name="Desc2" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Blaster Talents/BlasterTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "Skilled at striking targets from a distance, your energy blasts are extra deadly.
+–Prerequisites: N/A
+-[Passive]: When making an Unarmed Energy or Magic Attack against a target that is outside of your Melee Range, increase the Wound Roll for that Attacking Maneuver by 1(T). If they were 8+ squares away from you, increase this bonus by 2(T).
+-[Triggered, 1/Round]: If you hit an Opponent with an Unarmed Energy or Magic Attack that was outside of your Melee Range, make a Might Clash against that Opponent. If you win, move them any number of Squares up to your Might in a straight line away from you."
+fit_content = true
+
+[node name="PointBlankShot" type="Button" parent="BackgroundIMG/ButtonGrid/Blaster Talents/BlasterTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Point Blank Shot"
+
+[node name="Desc3" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Blaster Talents/BlasterTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "Knowing where to place your energy blasts for maximum effectiveness, the close range nature of your attacks makes them especially deadly.
+–Prerequisites: Close Range Shot
+-[Triggered, 1/Round]: If you hit an Opponent within your Melee Range with an Unarmed Energy or Magic Attack, make a Might Clash against them. If you win, increase the Damage Category of that Attacking Maneuver by 1.
+-[Triggered, 1/Encounter]: If you use the Energy Charge Maneuver within the Melee Range of an Opponent, use the declared Attacking Maneuver as an Out-of-Sequence Maneuver if it was an Unarmed Energy or Magic Attack."
+fit_content = true
+
+[node name="ArtilleryShot" type="Button" parent="BackgroundIMG/ButtonGrid/Blaster Talents/BlasterTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Artillery Shot"
+
+[node name="Desc4" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Blaster Talents/BlasterTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "Like a grenadier, your ability to lob energy blasts that cover a wide area makes your attacks even more likely to hit, despite the range.
+–Prerequisites: Far Shot
+-[Triggered, 1/Round]: If you use an Unarmed Energy or Magic Attack that does not possess an AoE, you may spend 2(T) Ki Points to add the Minor Sphere or Standard Line AoE to that Attacking Maneuver.
+-[Triggered, 1/Round]: If you target an Opponent outside of your Melee Range with an Unarmed Energy or Magic Attack, you may spend 2(bT) Ki Points to increase that Attacking Maneuver’s Strike Roll by 1(T)."
+fit_content = true
+
+[node name="BlasterMaster" type="Button" parent="BackgroundIMG/ButtonGrid/Blaster Talents/BlasterTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Blaster Master"
+
+[node name="Desc5" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Blaster Talents/BlasterTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "Your unparalleled skill with energy blasts allows you to obliterate your enemies.
+–Prerequisites: Point Blank Shot or Artillery Shot, ToP2+
+-[1/Encounter]: You may use an Energy or Magic Ultimate Signature Technique that has already been used in this Combat Encounter, as long as it is used as an Unarmed Attack.
+-[Triggered, 1/Round]: If you hit an Opponent with an Unarmed Energy or Magic Attack, spend up to 6(bT) Ki Points. If you do, increase the Wound Roll by an equal amount."
+fit_content = true
+
+[node name="ConditionTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="CombatTactician" type="Button" parent="BackgroundIMG/ButtonGrid/ConditionTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Combat Tactician"
+
+[node name="PerfectedTactics" type="Button" parent="BackgroundIMG/ButtonGrid/ConditionTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Perfected Tactics"
+
+[node name="Beat-downTactics" type="Button" parent="BackgroundIMG/ButtonGrid/ConditionTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Beat-down Tactics"
+
+[node name="CounterTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="WildCounter" type="Button" parent="BackgroundIMG/ButtonGrid/CounterTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Wild Counter"
+
+[node name="FierceCounter" type="Button" parent="BackgroundIMG/ButtonGrid/CounterTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Fierce Counter"
+
+[node name="PerfectCounter" type="Button" parent="BackgroundIMG/ButtonGrid/CounterTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Perfect Counter"
+
+[node name="JoltCounter" type="Button" parent="BackgroundIMG/ButtonGrid/CounterTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Jolt Counter"
+
+[node name="FullCounter" type="Button" parent="BackgroundIMG/ButtonGrid/CounterTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Full Counter"
+
+[node name="DodgingTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="DefensiveStyle" type="Button" parent="BackgroundIMG/ButtonGrid/DodgingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Defensive Style"
+
+[node name="CunningEvasion" type="Button" parent="BackgroundIMG/ButtonGrid/DodgingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Cunning Evasion"
+
+[node name="InstinctualEvasion" type="Button" parent="BackgroundIMG/ButtonGrid/DodgingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Instinctual Evasion"
+text_overrun_behavior = 3
+
+[node name="MasterfulEvasion" type="Button" parent="BackgroundIMG/ButtonGrid/DodgingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Masterful Evasion"
+
+[node name="FreeFlowingStance" type="Button" parent="BackgroundIMG/ButtonGrid/DodgingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Free Flowing Stance"
+text_overrun_behavior = 3
+
+[node name="DurabilityTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="EffectiveDefenses" type="Button" parent="BackgroundIMG/ButtonGrid/DurabilityTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Effective Defenses"
+text_overrun_behavior = 3
+
+[node name="Resilience" type="Button" parent="BackgroundIMG/ButtonGrid/DurabilityTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Resilience"
+text_overrun_behavior = 3
+
+[node name="ToughWarrior" type="Button" parent="BackgroundIMG/ButtonGrid/DurabilityTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Tough Warrior"
+text_overrun_behavior = 3
+
+[node name="SuperiorDurability" type="Button" parent="BackgroundIMG/ButtonGrid/DurabilityTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Superior Durability"
+text_overrun_behavior = 3
+
+[node name="Grappling Talents" type="ScrollContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="GrapplingTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid/Grappling Talents"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="Brawler" type="Button" parent="BackgroundIMG/ButtonGrid/Grappling Talents/GrapplingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Brawler"
+text_overrun_behavior = 3
+
+[node name="BrawlerDesc" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Grappling Talents/GrapplingTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "Particularly adept at submission holds and wrestling, you are more accustomed to fighting in a grapple than most.
+–Prerequisites: N/A
+-[Passive]: Gain an additional Action each Combat Round while Pinned.
+-[Triggered, 1/Round]: When you hit an Opponent with an Unarmed Physical Attack, you may use the Grapple Maneuver as an Out-of-Sequence Maneuver."
+fit_content = true
+
+[node name="Wrestler" type="Button" parent="BackgroundIMG/ButtonGrid/Grappling Talents/GrapplingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Wrestler"
+text_overrun_behavior = 3
+
+[node name="WrestDesc" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Grappling Talents/GrapplingTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = " Your grapple techniques are highly refined, and you are able to leverage your opponent’s size against them.
+–Prerequisites: Brawler
+-[Passive]: Treat your Size Category as if it was 1 larger for the effects of Gigantic Grip.
+-[Triggered, 1/Round]: When you make a Grapple Check to maintain a Grapple as the Grappler, you may use a Might Clash instead. Any bonuses from Gigantic Grip are applied to your Might Clash when using this effect."
+fit_content = true
+
+[node name="JudoTraining" type="Button" parent="BackgroundIMG/ButtonGrid/Grappling Talents/GrapplingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Judo Training"
+text_overrun_behavior = 3
+
+[node name="JudoDesc" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Grappling Talents/GrapplingTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "Expanding your training in the art of submission holds, you are able to use your grip on a target to deal damage or reposition them as you please.
+–Prerequisites: Brawler
+-[Passive]: Increase your Grapple Checks when already in a Grapple by 2(T).
+-[Triggered, 1/Round]: When you successfully initiate a Grapple, you may use the Basic Attack Maneuver or the Throw Maneuver as an Out-of-Sequence Maneuver."
+fit_content = true
+
+[node name="Heel" type="Button" parent="BackgroundIMG/ButtonGrid/Grappling Talents/GrapplingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Heel"
+text_overrun_behavior = 3
+
+[node name="HeelDesc" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Grappling Talents/GrapplingTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "Unabashed by dishonorable tactics, you are more than willing to choke the life out of your target.
+–Prerequisites: Brawler
+-[Passive]: Increase the Wound Roll of your Attacking Maneuvers made against Opponents in a Grapple by 2(T).
+-[1/Round]: While you are the Grappler in a Grapple, you can spend 1 Action to target the Grappled and make a Clash (Strike) against them. If you win, they gain the Suffocating Combat Condition until they escape the Grapple."
+fit_content = true
+
+[node name="Suplex" type="Button" parent="BackgroundIMG/ButtonGrid/Grappling Talents/GrapplingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Suplex"
+text_overrun_behavior = 3
+
+[node name="SuplexDesc" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Grappling Talents/GrapplingTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = " Able to use the terrain to your advantage while grappling an opponent, you can smash them into the ground or drag them through a wall to inflict massive damage.
+–Prerequisites: Brawler
+-[1/Round]: While you are the Grappler in a Grapple in the Sky Environment, you can spend 1 Action to make a Might Clash against the Grappled. If you win, move to the Standard Environment and reduce the Grappled’s Life Points by twice the Collision Damage of the Ground plus your Might.
+-[Triggered, 1/Round]: If you use a Attacking Maneuver of the Powered or Crushing Profile while in a Grapple in the Standard Environment, increase the Wound Roll by an amount equal to the Collision Damage that would be inflicted by Colliding with the ground.
+-[Passive]: A Signature Technique that is applying the effects of the Powerbomb Advantage can apply the second effect of Suplex, regardless of which Profile is used (you must still be in the Standard Environment)."
+fit_content = true
+
+[node name="HumanShield" type="Button" parent="BackgroundIMG/ButtonGrid/Grappling Talents/GrapplingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Human Shield"
+text_overrun_behavior = 3
+
+[node name="HSDescr" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Grappling Talents/GrapplingTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = " You can protect yourself by directing incoming attacks at the opponent currently in your grasp.
+–Prerequisites: Brawler
+-[Triggered, 1/Round, Resource]: At the end of your turn, if you are the Grappler in a Grapple, you may select a Grappled Opponent in that Grapple and give them a stack of Sacrifice until the start of your next turn or they escape the Grapple (whichever occurs first). If you are targeted by an Attacking Maneuver (that does not possess an AoE), you may spend a stack of Sacrifice on an Opponent to change the target of that Attacking Maneuver to that Opponent.
+-[Triggered, 1/Encounter]: If you are targeted for an Attacking Maneuver (that does not possess an AoE) while in a Grapple, you can make a Grapple Check against an Opponent in that Grapple. If you win, that Opponent becomes the target of that Attacking Maneuver instead."
+fit_content = true
+
+[node name="PersonalSpace" type="Button" parent="BackgroundIMG/ButtonGrid/Grappling Talents/GrapplingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Personal Space"
+text_overrun_behavior = 3
+
+[node name="PSdesc" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Grappling Talents/GrapplingTalents" groups=["TalentLabel"]]
+visible = false
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "You are adept at keeping others from grabbing hold of you.
+–Prerequisites: N/A
+-[1/Round]: Spend 1 Action to make a Grapple Check to escape a Grapple you are in as the Grappled.
+-[Triggered, 1/Round]: If you escape a Grapple, you may use the Basic Attack Maneuver (against the former Grappler) or Movement Maneuver as an Out-of-Sequence Maneuver.
+-[Triggered, 1/Encounter]: If you make a Grapple Check as the target of the Grapple Maneuver or as the Grappled, you may spend up to 8(bT) Ki Points to increase your Dice Score on that Grapple Check by half the amount of Ki Points spent."
+fit_content = true
+
+[node name="InitiativeTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="Alert" type="Button" parent="BackgroundIMG/ButtonGrid/InitiativeTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Alert"
+text_overrun_behavior = 3
+
+[node name="Wrestler" type="Button" parent="BackgroundIMG/ButtonGrid/InitiativeTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Wrestler"
+text_overrun_behavior = 3
+
+[node name="ImprovedInitiative" type="Button" parent="BackgroundIMG/ButtonGrid/InitiativeTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Improved Initiative"
+text_overrun_behavior = 3
+
+[node name="LightningInitiative" type="Button" parent="BackgroundIMG/ButtonGrid/InitiativeTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Lightning Initiative"
+text_overrun_behavior = 3
+
+[node name="PatientFighter" type="Button" parent="BackgroundIMG/ButtonGrid/InitiativeTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Patient Fighter"
+text_overrun_behavior = 3
+
+[node name="MagicTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="MagicWarrior" type="Button" parent="BackgroundIMG/ButtonGrid/MagicTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Magic Warrior"
+text_overrun_behavior = 3
+
+[node name="MagicBlaster" type="Button" parent="BackgroundIMG/ButtonGrid/MagicTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Magic Blaster"
+text_overrun_behavior = 3
+
+[node name="MagicMaster" type="Button" parent="BackgroundIMG/ButtonGrid/MagicTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Magic Master"
+text_overrun_behavior = 3
+
+[node name="MindfulTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="SereneWarrior" type="Button" parent="BackgroundIMG/ButtonGrid/MindfulTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Serene Warrior"
+text_overrun_behavior = 3
+
+[node name="CombatMeditation" type="Button" parent="BackgroundIMG/ButtonGrid/MindfulTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Combat Meditation"
+text_overrun_behavior = 3
+
+[node name="TranquilCounter" type="Button" parent="BackgroundIMG/ButtonGrid/MindfulTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Tranquil Counter"
+text_overrun_behavior = 3
+
+[node name="ClearMind" type="Button" parent="BackgroundIMG/ButtonGrid/MindfulTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Clear Mind"
+text_overrun_behavior = 3
+
+[node name="CombatZen" type="Button" parent="BackgroundIMG/ButtonGrid/MindfulTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Combat Zen"
+text_overrun_behavior = 3
+
+[node name="MinionTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="MasterofMinions" type="Button" parent="BackgroundIMG/ButtonGrid/MinionTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Master of Minions"
+text_overrun_behavior = 3
+
+[node name="MinionCoordinator" type="Button" parent="BackgroundIMG/ButtonGrid/MinionTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Minion Coordinator"
+text_overrun_behavior = 3
+
+[node name="AscendedMinion" type="Button" parent="BackgroundIMG/ButtonGrid/MinionTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Ascended Minion"
+text_overrun_behavior = 3
+
+[node name="MinionMark" type="Button" parent="BackgroundIMG/ButtonGrid/MinionTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Minion Mark"
+text_overrun_behavior = 3
+
+[node name="SacrificialMinion" type="Button" parent="BackgroundIMG/ButtonGrid/MinionTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Sacrificial Minion"
+text_overrun_behavior = 3
+
+[node name="MobilityTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="Footwork" type="Button" parent="BackgroundIMG/ButtonGrid/MobilityTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Master of Minions"
+text_overrun_behavior = 3
+
+[node name="HighSpeedAce" type="Button" parent="BackgroundIMG/ButtonGrid/MobilityTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "High Speed Ace"
+text_overrun_behavior = 3
+
+[node name="PowerofMovement" type="Button" parent="BackgroundIMG/ButtonGrid/MobilityTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Power of Movement"
+text_overrun_behavior = 3
+
+[node name="FleetofFoot" type="Button" parent="BackgroundIMG/ButtonGrid/MobilityTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Fleet of Foot"
+text_overrun_behavior = 3
+
+[node name="Multi-TypeTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="Multi-TypeAttacker" type="Button" parent="BackgroundIMG/ButtonGrid/Multi-TypeTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Multi-Type Attacker"
+text_overrun_behavior = 3
+
+[node name="Multi-TypeGambit" type="Button" parent="BackgroundIMG/ButtonGrid/Multi-TypeTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Multi-Type Gambit"
+text_overrun_behavior = 3
+
+[node name="Multi-TypeMaster" type="Button" parent="BackgroundIMG/ButtonGrid/Multi-TypeTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Multi-Type Master"
+text_overrun_behavior = 3
+
+[node name="PhysicalTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="Iron Fist" type="Button" parent="BackgroundIMG/ButtonGrid/PhysicalTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Iron Fist"
+text_overrun_behavior = 3
+
+[node name="RapidFist" type="Button" parent="BackgroundIMG/ButtonGrid/PhysicalTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Rapid Fist"
+text_overrun_behavior = 3
+
+[node name="PenetratingFist" type="Button" parent="BackgroundIMG/ButtonGrid/PhysicalTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Penetrating Fist"
+text_overrun_behavior = 3
+
+[node name="SupremeFist" type="Button" parent="BackgroundIMG/ButtonGrid/PhysicalTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Supreme Fist"
+text_overrun_behavior = 3
+
+[node name="RacialTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="MasterfulIntegration" type="Button" parent="BackgroundIMG/ButtonGrid/RacialTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Masterful Integration"
+text_overrun_behavior = 3
+
+[node name="CombatMode" type="Button" parent="BackgroundIMG/ButtonGrid/RacialTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Combat Mode"
+text_overrun_behavior = 3
+
+[node name="NefariousPlating" type="Button" parent="BackgroundIMG/ButtonGrid/RacialTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Nefarious Plating:"
+text_overrun_behavior = 3
+
+[node name="DedicatedSniper" type="Button" parent="BackgroundIMG/ButtonGrid/RacialTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Dedicated Sniper"
+text_overrun_behavior = 3
+
+[node name="TechnicalProwess" type="Button" parent="BackgroundIMG/ButtonGrid/RacialTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Technical Prowess"
+text_overrun_behavior = 3
+
+[node name="AcuteTripleVision" type="Button" parent="BackgroundIMG/ButtonGrid/RacialTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Acute Triple Vision"
+text_overrun_behavior = 3
+
+[node name="BattleGoo" type="Button" parent="BackgroundIMG/ButtonGrid/RacialTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Battle Goo"
+text_overrun_behavior = 3
+
+[node name="MiniMajin" type="Button" parent="BackgroundIMG/ButtonGrid/RacialTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Mini Majin"
+text_overrun_behavior = 3
+
+[node name="SaiyanTailResistance" type="Button" parent="BackgroundIMG/ButtonGrid/RacialTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Saiyan Tail Resistance"
+text_overrun_behavior = 3
+
+[node name="TuffleParasite" type="Button" parent="BackgroundIMG/ButtonGrid/RacialTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Tuffle Parasite"
+text_overrun_behavior = 3
+
+[node name="RagingTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="Frenzy" type="Button" parent="BackgroundIMG/ButtonGrid/RagingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Frenzy"
+text_overrun_behavior = 3
+
+[node name="BurningAnger" type="Button" parent="BackgroundIMG/ButtonGrid/RagingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Burning Anger"
+text_overrun_behavior = 3
+
+[node name="BerserkResolve" type="Button" parent="BackgroundIMG/ButtonGrid/RagingTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Berserk Resolve"
+text_overrun_behavior = 3
+
+[node name="SpecializationTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="ArchetypeFocus" type="Button" parent="BackgroundIMG/ButtonGrid/SpecializationTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Archetype Focus"
+text_overrun_behavior = 3
+
+[node name="PrecisionKata" type="Button" parent="BackgroundIMG/ButtonGrid/SpecializationTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Precision Kata"
+text_overrun_behavior = 3
+
+[node name="BrutalKata" type="Button" parent="BackgroundIMG/ButtonGrid/SpecializationTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Brutal Kata"
+text_overrun_behavior = 3
+
+[node name="ProfileFocus" type="Button" parent="BackgroundIMG/ButtonGrid/SpecializationTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Profile Focus"
+text_overrun_behavior = 3
+
+[node name="StarterTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="SlowStarter" type="Button" parent="BackgroundIMG/ButtonGrid/StarterTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Slow Starter"
+text_overrun_behavior = 3
+
+[node name="WarmUp" type="Button" parent="BackgroundIMG/ButtonGrid/StarterTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Warm Up"
+text_overrun_behavior = 3
+
+[node name="ReservedCombatant" type="Button" parent="BackgroundIMG/ButtonGrid/StarterTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Reserved Combatant"
+text_overrun_behavior = 3
+
+[node name="JumpStart" type="Button" parent="BackgroundIMG/ButtonGrid/StarterTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Jump Start"
+text_overrun_behavior = 3
+
+[node name="SurgeTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="SecondWind" type="Button" parent="BackgroundIMG/ButtonGrid/SurgeTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Second Wind"
+text_overrun_behavior = 3
+
+[node name="NeverSurrender" type="Button" parent="BackgroundIMG/ButtonGrid/SurgeTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Never Surrender"
+text_overrun_behavior = 3
+
+[node name="Lion’sHeart" type="Button" parent="BackgroundIMG/ButtonGrid/SurgeTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Lion’s Heart"
+text_overrun_behavior = 3
+
+[node name="LightningSurge" type="Button" parent="BackgroundIMG/ButtonGrid/SurgeTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Lightning Surge"
+text_overrun_behavior = 3
+
+[node name="TauntTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="MentalWarfare" type="Button" parent="BackgroundIMG/ButtonGrid/TauntTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Mental Warfare"
+text_overrun_behavior = 3
+
+[node name="Taunt" type="Button" parent="BackgroundIMG/ButtonGrid/TauntTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Taunt"
+text_overrun_behavior = 3
+
+[node name="ImprovedTaunt" type="Button" parent="BackgroundIMG/ButtonGrid/TauntTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Improved Taunt"
+text_overrun_behavior = 3
+
+[node name="TeamworkTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="FlexibleFlanker" type="Button" parent="BackgroundIMG/ButtonGrid/TeamworkTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Flexible Flanker"
+text_overrun_behavior = 3
+
+[node name="SupportingDefender" type="Button" parent="BackgroundIMG/ButtonGrid/TeamworkTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Supporting Defender"
+text_overrun_behavior = 3
+
+[node name="Opportunist" type="Button" parent="BackgroundIMG/ButtonGrid/TeamworkTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Opportunist"
+text_overrun_behavior = 3
+
+[node name="Teamwork" type="Button" parent="BackgroundIMG/ButtonGrid/TeamworkTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Teamwork"
+text_overrun_behavior = 3
+
+[node name="SynchronizedCombatants" type="Button" parent="BackgroundIMG/ButtonGrid/TeamworkTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Synchronized Combatants"
+text_overrun_behavior = 3
+
+[node name="SuperiorSynchronization" type="Button" parent="BackgroundIMG/ButtonGrid/TeamworkTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Superior Synchronization"
+text_overrun_behavior = 3
+
+[node name="TechniqueTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="EnergyControl" type="Button" parent="BackgroundIMG/ButtonGrid/TechniqueTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Energy Control"
+text_overrun_behavior = 3
+
+[node name="TechniqueMaster" type="Button" parent="BackgroundIMG/ButtonGrid/TechniqueTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Technique Master"
+text_overrun_behavior = 3
+
+[node name="FavoredTechnique" type="Button" parent="BackgroundIMG/ButtonGrid/TechniqueTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Favored Technique"
+text_overrun_behavior = 3
+
+[node name="FlexibleTechnique" type="Button" parent="BackgroundIMG/ButtonGrid/TechniqueTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Flexible Technique"
+text_overrun_behavior = 3
+
+[node name="PowerfulTechnique" type="Button" parent="BackgroundIMG/ButtonGrid/TechniqueTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Powerful Technique"
+text_overrun_behavior = 3
+
+[node name="UniqueTechnique" type="Button" parent="BackgroundIMG/ButtonGrid/TechniqueTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Unique Technique"
+text_overrun_behavior = 3
+
+[node name="TerrifyingTechnique" type="Button" parent="BackgroundIMG/ButtonGrid/TechniqueTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Terrifying Technique"
+text_overrun_behavior = 3
+
+[node name="QuickLearner" type="Button" parent="BackgroundIMG/ButtonGrid/TechniqueTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Quick Learner"
+text_overrun_behavior = 3
+
+[node name="PerfectMimicry" type="Button" parent="BackgroundIMG/ButtonGrid/TechniqueTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Perfect Mimicry"
+text_overrun_behavior = 3
+
+[node name="CopyIndex" type="Button" parent="BackgroundIMG/ButtonGrid/TechniqueTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Copy Index"
+text_overrun_behavior = 3
+
+[node name="AdvancedLearner" type="Button" parent="BackgroundIMG/ButtonGrid/TechniqueTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Advanced Learner"
+text_overrun_behavior = 3
+
+[node name="ThresholdTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="Vigor" type="Button" parent="BackgroundIMG/ButtonGrid/ThresholdTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Vigor"
+text_overrun_behavior = 3
+
+[node name="Diehard" type="Button" parent="BackgroundIMG/ButtonGrid/ThresholdTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Diehard"
+text_overrun_behavior = 3
+
+[node name="Fortitude" type="Button" parent="BackgroundIMG/ButtonGrid/ThresholdTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Fortitude"
+text_overrun_behavior = 3
+
+[node name="UndyingDetermination" type="Button" parent="BackgroundIMG/ButtonGrid/ThresholdTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Undying Determination"
+text_overrun_behavior = 3
+
+[node name="TransformationTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="BlindingTransformation" type="Button" parent="BackgroundIMG/ButtonGrid/TransformationTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Blinding Transformation"
+text_overrun_behavior = 3
+
+[node name="DesperateTransformation" type="Button" parent="BackgroundIMG/ButtonGrid/TransformationTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Desperate Transformation"
+text_overrun_behavior = 3
+
+[node name="EnhancedTransformation" type="Button" parent="BackgroundIMG/ButtonGrid/TransformationTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Enhanced Transformation"
+text_overrun_behavior = 3
+
+[node name="ForcefulTransformation" type="Button" parent="BackgroundIMG/ButtonGrid/TransformationTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Forceful Transformation"
+text_overrun_behavior = 3
+
+[node name="UnderPressure" type="Button" parent="BackgroundIMG/ButtonGrid/TransformationTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Under Pressure"
+text_overrun_behavior = 3
+
+[node name="SpecializedTransformation" type="Button" parent="BackgroundIMG/ButtonGrid/TransformationTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Specialized Transformation"
+text_overrun_behavior = 3
+
+[node name="ComfortableTransformation" type="Button" parent="BackgroundIMG/ButtonGrid/TransformationTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Comfortable Transformation"
+text_overrun_behavior = 3
+
+[node name="InspiringTransformation" type="Button" parent="BackgroundIMG/ButtonGrid/TransformationTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Inspiring Transformation"
+text_overrun_behavior = 3
+
+[node name="OverwhelmingTransformation" type="Button" parent="BackgroundIMG/ButtonGrid/TransformationTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Overwhelming Transformation"
+text_overrun_behavior = 3
+
+[node name="TransformingInitiative" type="Button" parent="BackgroundIMG/ButtonGrid/TransformationTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Transforming Initiative"
+text_overrun_behavior = 3
+
+[node name="RestrainedTransformation" type="Button" parent="BackgroundIMG/ButtonGrid/TransformationTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Restrained Transformation"
+text_overrun_behavior = 3
+
+[node name="Weapon Talents" type="ScrollContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="WeaponTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid/Weapon Talents"]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="WeaponSpecialist" type="Button" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Weapon Specialist"
+text_overrun_behavior = 3
+
+[node name="WeaponSDesc" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = " You are especially skilled with a Weapon.
+–Prerequisites: N/A
+-[Passive]: Reduce the Weapon Penalty by 2(T).
+-[Triggered, 1/Round]: When you hit an Opponent with an Armed Attack, make a Might Clash against them. If you win, reduce the Break Value of their Top Layer by 1."
+fit_content = true
+
+[node name="CategorySpecialist" type="Button" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Category Specialist"
+text_overrun_behavior = 3
+
+[node name="CatSpeci" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "You are extraordinarily adept in the use of a particular type of weapon.
+–Prerequisites: Weapon Specialist
+-[Passive]: Select a Weapon Category. When using an Attacking Maneuver with your chosen Weapon Category applied to it, increase the Natural Result of your Strike Rolls by 1.
+-[Triggered, 1/Round]: When making an Attacking Maneuver with a Weapon of your chosen Weapon Category, you may use the effects of a different Weapon Category for that Weapon Type instead."
+fit_content = true
+
+[node name="DuelingSpecialist" type="Button" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Dueling Specialist"
+text_overrun_behavior = 3
+
+[node name="DuelSDesc" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = " You are proficient with using a Weapon for defense as well as offense.
+–Prerequisites: Weapon Specialist
+-[Passive]: While you are only wielding a single Weapon of the Standard Size, increase your Wound Rolls with Armed Attacks made with it by 1(T).
+-[Triggered, 1/Round]: While the only Weapon you have equipped is a Standard Size Weapon and you make an Attacking Maneuver or use the Parry effect of the Defend Maneuver, you can increase your Strike Rolls by 2(T) for the duration of that Maneuver."
+fit_content = true
+
+[node name="Light WeaponsSpecialist" type="Button" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Light Weapons Specialist"
+text_overrun_behavior = 3
+
+[node name="LWdesc" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "You are extremely skilled at wielding lighter weapons to their fullest.
+–Prerequisites: Weapon Specialist
+-[Passive]: While you are only wielding a single Weapon of the Small Size, increase your Wound Rolls by 2(T).
+-[Triggered, 1/Round]: When you use the Basic Attack Maneuver to make an Armed Attack with a Small Size Weapon, spend 3(bT) Ki Points to use the Called Shot Maneuver in response to that Attacking Maneuver without spending an Action."
+fit_content = true
+
+[node name="HeavyWeaponsSpecialist" type="Button" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Heavy Weapons Specialist"
+text_overrun_behavior = 3
+
+[node name="Desc" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "You are especially adept in wielding large Weapons to great effect.
+–Prerequisites: Weapon Specialist
+-[Passive]: While you are only wielding a single Weapon of the Big Size, increase your Strike Rolls by 1(T).
+-[Triggered, 1/Round]: When you make an Attacking Maneuver with a Big Size Weapon, reduce the Weapon’s Life Points by 1/10 their Maximum to increase the Wound Roll by the reduction. If you hit your Opponent with this Attacking Maneuver, inflict 2x the amount of Diminishing Defense for this Attacking Maneuver."
+fit_content = true
+
+[node name="IaijutsuSpecialist" type="Button" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Iaijutsu Specialist"
+text_overrun_behavior = 3
+
+[node name="Desc2" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = " Trained in a particular style of combat, you keep your Weapon in its sheathe until the exact moment you want to strike.
+–Prerequisites: Weapon Specialist
+-[Passive]: While you are not wielding any Weapon, increase your Dodge Rolls by 1(T). After each Armed Attack, you may sheathe the Weapon used as an Out-of-Sequence Maneuver.
+-[Triggered, 1/Round]: If you Unsheathe a Standard Size Weapon, making it the only Weapon you have equipped, you can make a Basic Attack Maneuver as an Out-of-Sequence Maneuver."
+fit_content = true
+
+[node name="DualWieldingSpecialist" type="Button" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Dual Wielding Specialist"
+text_overrun_behavior = 3
+
+[node name="Desc3" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "Adapted to wielding two Weapons simultaneously, you can press the advantage more easily while using one Weapon to defend.
+–Prerequisites: Weapon Specialist
+-[Passive]: While you are wielding 2+ Weapons, increase your Strike Rolls by 1(T).
+-[1/Round]: While you are wielding 2+ Weapons, you can either:
+
+Use the Parry effect of the Defend Maneuver without spending a Counter Action.
+When making an Armed Attack, increase the Wound Roll by 1/2 of your Might."
+fit_content = true
+
+[node name="CriticalSpecialist" type="Button" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Critical Specialist"
+text_overrun_behavior = 3
+
+[node name="Desc4" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = " Focusing on targeting an opponent’s vitals, you attempt to finish your opponents swiftly.
+–Prerequisites: Weapon Specialist
+-[Passive]: Decrease the Critical Target of your Strike Rolls when making an Armed Attack by 1.
+-[Passive]: Increase the Extra Dice of your Critical Results for your Strike and Wound Rolls when making an Armed Attack by 2 Dice Categories.
+-[Triggered, 1/Round]: If you score a Critical Result on the Strike Roll for an Armed Attack, spend 3(bT) Ki Points to increase the Damage Category of that Attacking Maneuver by 1."
+fit_content = true
+
+[node name="VarietySpecialist" type="Button" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Variety Specialist"
+text_overrun_behavior = 3
+
+[node name="Desc5" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "Constantly switching your Weapon, your tactics leave your enemies guessing.
+–Prerequisites: Weapon Specialist
+-[Passive]: All of your Weapons gain an additional Weapon Quality (this can exceed the limit on Weapon Qualities).
+-[Triggered, 1/Round]: If you have exchanged a Weapon you are currently holding for another Weapon you possess through the No Effort Maneuver or the effects of the Weapon Summoner Advancement, increase the Wound Roll of your next Armed Attack by 3(T)."
+fit_content = true
+
+[node name="ImprovisedSpecialist" type="Button" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Improvised Specialist"
+text_overrun_behavior = 3
+
+[node name="Desc6" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "You are able to fashion a Weapon out of whatever you can find.
+–Prerequisites: Weapon Specialist
+-[Triggered, 1/Round]: When you use the Terrain Lift Maneuver, the Feature can be used as a Big Bludgeoning Weapon with a Quality decided by the ARC. The Life Points of this Feature becomes 1/4 of the amount for a Weapon at your Power Level. The ARC may allow the Feature to be Slashing or Piercing instead of Bludgeoning depending on the Feature.
+-[Triggered, 1/Round]: When you hit an Opponent with an Armed Attack using a Feature as a Physical Weapon, you may destroy the Weapon immediately after that Attacking Maneuver. If you do, increase your Wound Roll by 1/2 of the Weapon’s Life Points."
+fit_content = true
+
+[node name="WeaponFixer" type="Button" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Weapon Fixer"
+text_overrun_behavior = 3
+
+[node name="Desc7" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "You are able to repair your weapon mid-fight, using your ki.
+–Prerequisites: Weapon Specialist
+-[Triggered/Start of Turn]: If you have a destroyed Weapon, you can spend 4(bT) Ki Points to recreate that Weapon out of energy until the start of your next turn. If you do, increase the Wound Rolls of all Attacking Maneuvers made by that Weapon by 1(T).
+-[Triggered, 1/Encounter]: If you use the first effect of Weapon Fixer to recreate a Weapon, apply a Special Quality of your choice to that Weapon until the start of your next turn."
+fit_content = true
+
+[node name="WeaponMaster" type="Button" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Weapon Master	"
+text_overrun_behavior = 3
+
+[node name="Desc8" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "Your Weapon Attacks are able to conduct your ki, dealing more damage when you land them successfully.
+–Prerequisites: Any talent that has ‘Weapon Specialist’ as a prerequisite
+-[Triggered, 1/Round]: If you score a Critical Result on the Strike Roll for an Armed Attack, increase the Dice Category of your Energy Charges on that Attacking Maneuver by 1. If that Attacking Maneuver lacks any Energy Charges, instead apply an Energy Charge to that Attacking Maneuver.
+-[Triggered, 1/Round]: If you hit an Opponent with an Armed Attack, spend up to 6(bT) Ki Points. If you do, increase the Wound Roll by an equal amount.
+
+"
+fit_content = true
+
+[node name="VariableFighter" type="Button" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Variable Fighter"
+text_overrun_behavior = 3
+
+[node name="Desc9" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "You are skilled in the use of both Weapons and your fists or ki, and employ a style which utilizes both.
+–Prerequisites: Weapon Specialist and either Iron Fist, Rapid Fist, Close Range Shot or Far Shot, you do not possess the Multi-Type Attacker Talent
+-[Triggered, 1/Round]: If you would use an Armed Attack, increase the Strike OR Wound Rolls of your Unarmed Attacks for the remainder of this Combat Round by 1(T) or 2(T) respectively.
+-[Triggered, 1/Round]: If you would use an Unarmed Attack, increase the Strike OR Wound Rolls of your Armed Attacks for the remainder of this Combat Round by 1(T) or 2(T) respectively.
+
+"
+fit_content = true
+
+[node name="VariableChampion" type="Button" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Variable Champion"
+text_overrun_behavior = 3
+
+[node name="Desc10" type="RichTextLabel" parent="BackgroundIMG/ButtonGrid/Weapon Talents/WeaponTalents" groups=["TalentLabel"]]
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+text = "Your fighting style has evolved, allowing you to seamlessly combine your Armed and Unarmed Attacks.
+–Prerequisites: Variable Fighter, ToP3+
+-[Passive]: If you are not wielding a Weapon, increase your Dodge Rolls by 1(T). If you are wielding a Weapon, increase your Wound Rolls by 1(T).
+-[Triggered, 1/Round]: If you hit the Opponent with an Armed Attacking Maneuver, you may use the Basic Attack Maneuver to make an Unarmed Attack as an Out-of-Sequence Maneuver."
+fit_content = true
+
+[node name="SkillTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="Practiced" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Practiced"
+text_overrun_behavior = 3
+
+[node name="DynamicPose" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Dynamic Pose"
+text_overrun_behavior = 3
+
+[node name="PosingMaster" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Posing Master"
+text_overrun_behavior = 3
+
+[node name="TeamPose" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Team Pose"
+text_overrun_behavior = 3
+
+[node name="AnalyticFighter" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Analytic Fighter"
+text_overrun_behavior = 3
+
+[node name="CompleteAnalysis" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Complete Analysis"
+text_overrun_behavior = 3
+
+[node name="GeniusDesigner" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Genius Designer"
+text_overrun_behavior = 3
+
+[node name="CounterJury-rigging" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Counter Jury-rigging"
+text_overrun_behavior = 3
+
+[node name="SilentFootsteps" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Silent Footsteps"
+text_overrun_behavior = 3
+
+[node name="StealthStrike" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Stealth Strike"
+text_overrun_behavior = 3
+
+[node name="Assassinate" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Assassinate"
+text_overrun_behavior = 3
+
+[node name="MasterAssassin" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Master Assassin"
+text_overrun_behavior = 3
+
+[node name="AcrobatStar" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Acrobat Star"
+text_overrun_behavior = 3
+
+[node name="ExpertPilot" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Expert Pilot"
+text_overrun_behavior = 3
+
+[node name="Yoink" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Yoink"
+text_overrun_behavior = 3
+
+[node name="BattlefieldDoctor" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Battlefield Doctor"
+text_overrun_behavior = 3
+
+[node name="RefinedSensor" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Refined Sensor"
+text_overrun_behavior = 3
+
+[node name="MasterTamer" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Master Tamer"
+text_overrun_behavior = 3
+
+[node name="TerrifyingPresence" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Terrifying Presence"
+text_overrun_behavior = 3
+
+[node name="DesperateDistraction" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Desperate Distraction"
+text_overrun_behavior = 3
+
+[node name="LastDitchEffort" type="Button" parent="BackgroundIMG/ButtonGrid/SkillTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Last Ditch Effort"
+text_overrun_behavior = 3
+
+[node name="MiscellaneousTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="ApplicationofSkill" type="Button" parent="BackgroundIMG/ButtonGrid/MiscellaneousTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Application of Skill"
+text_overrun_behavior = 3
+
+[node name="ConcentratedEnergy" type="Button" parent="BackgroundIMG/ButtonGrid/MiscellaneousTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Concentrated Energy"
+text_overrun_behavior = 3
+
+[node name="FuriousFlex" type="Button" parent="BackgroundIMG/ButtonGrid/MiscellaneousTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Furious Flex"
+text_overrun_behavior = 3
+
+[node name="Lucky" type="Button" parent="BackgroundIMG/ButtonGrid/MiscellaneousTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Lucky"
+text_overrun_behavior = 3
+
+[node name="Naturist" type="Button" parent="BackgroundIMG/ButtonGrid/MiscellaneousTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Naturist"
+text_overrun_behavior = 3
+
+[node name="SnackFiend" type="Button" parent="BackgroundIMG/ButtonGrid/MiscellaneousTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Snack Fiend"
+text_overrun_behavior = 3
+
+[node name="DrunkenFist" type="Button" parent="BackgroundIMG/ButtonGrid/MiscellaneousTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Drunken Fist"
+text_overrun_behavior = 3
+
+[node name="FrequentFlyer" type="Button" parent="BackgroundIMG/ButtonGrid/MiscellaneousTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Frequent Flyer"
+text_overrun_behavior = 3
+
+[node name="SwaggeringWager" type="Button" parent="BackgroundIMG/ButtonGrid/MiscellaneousTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Swaggering Wager"
+text_overrun_behavior = 3
+
+[node name="Willpower" type="Button" parent="BackgroundIMG/ButtonGrid/MiscellaneousTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Willpower"
+text_overrun_behavior = 3
+
+[node name="BalanceTalents" type="VBoxContainer" parent="BackgroundIMG/ButtonGrid"]
+visible = false
+layout_mode = 2
+
+[node name="BalancedWarrior" type="Button" parent="BackgroundIMG/ButtonGrid/BalanceTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Balanced Warrior"
+
+[node name="BalancedDefender" type="Button" parent="BackgroundIMG/ButtonGrid/BalanceTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Balanced Defender"
+
+[node name="BalancedMind" type="Button" parent="BackgroundIMG/ButtonGrid/BalanceTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Balanced Mind"
+
+[node name="JackofAllStyles" type="Button" parent="BackgroundIMG/ButtonGrid/BalanceTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Jack of All Styles"
+
+[node name="LordofBalance" type="Button" parent="BackgroundIMG/ButtonGrid/BalanceTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Lord of Balance"
+
+[node name="PoweroftheZ-Warrior" type="Button" parent="BackgroundIMG/ButtonGrid/BalanceTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Power of the Z-Warrior"
+text_overrun_behavior = 3
+
+[node name="ValoroftheDragonTeam" type="Button" parent="BackgroundIMG/ButtonGrid/BalanceTalents"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_k0dk3")
+toggle_mode = true
+text = "Valor of the Dragon Team"
+text_overrun_behavior = 3
+
+[node name="CloseAndSave" type="Button" parent="BackgroundIMG"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.853541
+anchor_top = 0.899135
+anchor_right = 0.943961
+anchor_bottom = 0.938053
+text = "finished"
+metadata/_edit_use_anchors_ = true
+
+[node name="ShowDescriptions" type="CheckButton" parent="BackgroundIMG"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0208333
+anchor_top = 0.896296
+anchor_right = 0.1125
+anchor_bottom = 0.935214
+text = "Talent Details
+"
+metadata/_edit_use_anchors_ = true
+
+[connection signal="toggled" from="BackgroundIMG/ButtonGrid/Adaptation Talents/AdaptationTalents2/AdeptWarrior" to="." method="_on_adept_warrior_toggled"]
+[connection signal="toggled" from="BackgroundIMG/ButtonGrid/Adaptation Talents/AdaptationTalents2/CombatExpertise" to="." method="_on_combat_expertise_toggled"]
+[connection signal="pressed" from="BackgroundIMG/CloseAndSave" to="." method="_on_close_and_save_pressed"]
+[connection signal="toggled" from="BackgroundIMG/ShowDescriptions" to="." method="_on_show_descriptions_toggled"]

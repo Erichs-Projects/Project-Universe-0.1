@@ -1,0 +1,45 @@
+[gd_scene load_steps=9 format=3 uid="uid://cluu0yy8det34"]
+
+[ext_resource type="Texture2D" uid="uid://qrub2aw2om73" path="res://graphics/grass.png" id="1_culhu"]
+[ext_resource type="Script" path="res://world.gd" id="1_ju3dq"]
+[ext_resource type="PackedScene" uid="uid://ct5qaejn1wa6j" path="res://scenes/da_player.tscn" id="2_coh0b"]
+[ext_resource type="PackedScene" uid="uid://7ok6i4regodj" path="res://scenes/enemy.tscn" id="3_bq02s"]
+[ext_resource type="Texture2D" uid="uid://bn0gdlw4353qx" path="res://graphics/HighlightedRegion2.png" id="3_f78pu"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_xyojf"]
+texture = ExtResource("1_culhu")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s3jy8"]
+texture = ExtResource("3_f78pu")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_0kbat"]
+tile_size = Vector2i(32, 32)
+sources/1 = SubResource("TileSetAtlasSource_xyojf")
+sources/2 = SubResource("TileSetAtlasSource_s3jy8")
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_ju3dq")
+
+[node name="TileMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_0kbat")
+format = 2
+layer_0/name = "Ground"
+layer_0/tile_data = PackedInt32Array(0, 1, 0, 65536, 1, 0, 131072, 1, 0, 196608, 1, 0, 262144, 1, 0, 262145, 1, 0, 262146, 1, 0, 262147, 1, 0, 262148, 1, 0, 196612, 1, 0, 131076, 1, 0, 65540, 1, 0, 4, 1, 0, 3, 1, 0, 2, 1, 0, 1, 1, 0, 65537, 1, 0, 131073, 1, 0, 196609, 1, 0, 196610, 1, 0, 131074, 1, 0, 131075, 1, 0, 65539, 1, 0, 65538, 1, 0, 196611, 1, 0)
+layer_1/name = "Highlight"
+layer_1/tile_data = PackedInt32Array()
+
+[node name="DaPlayer" parent="." instance=ExtResource("2_coh0b")]
+position = Vector2(82, 79)
+
+[node name="Enemy" parent="." instance=ExtResource("3_bq02s")]
+position = Vector2(144, 144)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(81, 81)
+zoom = Vector2(4, 4)
+
+[connection signal="input_event" from="DaPlayer" to="." method="_on_da_player_input_event"]

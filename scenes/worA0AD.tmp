@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://btis65yjegrot"]
+
+[ext_resource type="Script" path="res://scripts/world.gd" id="1_5dr8i"]
+[ext_resource type="Texture2D" uid="uid://djw3cvrejssut" path="res://graphics/TileSizeTest.png" id="2_2xpma"]
+[ext_resource type="PackedScene" uid="uid://dckay77iespfg" path="res://scenes/player_character.tscn" id="4_lt6ni"]
+[ext_resource type="Texture2D" uid="uid://bb02uqhfwl4tg" path="res://graphics/db6hy2w-4db8a954-a6e1-4e46-b202-2d2786241df4.png" id="4_ubm17"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_2by1s"]
+resource_name = "Floorboard"
+texture = ExtResource("2_2xpma")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_5pnk0"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_2by1s")
+
+[node name="World" type="Node2D"]
+script = ExtResource("1_5dr8i")
+
+[node name="TestMarker" type="Marker2D" parent="."]
+position = Vector2(16, 16)
+
+[node name="GameMap" type="TileMap" parent="."]
+tile_set = SubResource("TileSet_5pnk0")
+format = 2
+layer_0/tile_data = PackedInt32Array(0, 0, 0, 65537, 0, 0, 131071, 0, 0, -65535, 0, 0, -1, 0, 0, 2, 0, 0, 131074, 0, 0, 131072, 0, 0, 65539, 0, 0, 196609, 0, 0, 196612, 0, 0, 4, 0, 0)
+
+[node name="WorldCamera" type="Camera2D" parent="."]
+position = Vector2(45, 44)
+zoom = Vector2(4, 4)
+
+[node name="BadGuy" type="Sprite2D" parent="."]
+position = Vector2(112, 48)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_ubm17")
+hframes = 10
+vframes = 3
+frame = 23
+
+[node name="PlayerCharacter" parent="." instance=ExtResource("4_lt6ni")]
+position = Vector2(-16, 16)

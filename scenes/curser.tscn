@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ngydmck3c4n3"]
+
+[ext_resource type="Script" path="res://scripts/curser.gd" id="1_qn2ws"]
+[ext_resource type="Texture2D" uid="uid://bx5kmy8wg1rt7" path="res://graphics/Texture/menu_selection_arrow.png" id="1_qwi4s"]
+
+[node name="Curser" type="Node2D"]
+script = ExtResource("1_qn2ws")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(40, -38)
+rotation = -3.94968
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_qwi4s")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.1
+one_shot = true

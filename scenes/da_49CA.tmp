@@ -1,0 +1,27 @@
+[gd_scene load_steps=4 format=3 uid="uid://ct5qaejn1wa6j"]
+
+[ext_resource type="Script" path="res://scenes/da_player.gd" id="1_02rlu"]
+[ext_resource type="Texture2D" uid="uid://ojypf5a0l2ld" path="res://graphics/Texture/earthling_type_one_base.png" id="1_2tem6"]
+[ext_resource type="Texture2D" uid="uid://djw3cvrejssut" path="res://graphics/Texture/TileSizeTest.png" id="1_7834e"]
+
+[node name="Character" type="Path2D" groups=["Characters"]]
+script = ExtResource("1_02rlu")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="."]
+rotates = false
+loop = false
+
+[node name="PlayerSprite" type="Sprite2D" parent="PathFollow2D"]
+texture = ExtResource("1_2tem6")
+region_enabled = true
+region_rect = Rect2(0, 0, 32, 32)
+
+[node name="TileSizeTest" type="Sprite2D" parent="PathFollow2D/PlayerSprite"]
+modulate = Color(1, 1, 1, 0.258824)
+texture = ExtResource("1_7834e")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

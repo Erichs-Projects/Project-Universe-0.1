@@ -1,0 +1,85 @@
+[gd_scene load_steps=6 format=3 uid="uid://di1xdtuh05w8h"]
+
+[ext_resource type="Script" path="res://scripts/Options.gd" id="1_qo2w1"]
+[ext_resource type="Texture2D" uid="uid://dbj3grnaudyu5" path="res://graphics/BackgroundsWallpapers/goku_and_bulma_need_to_talk_to_you_about_your_extended_car_warranty.png" id="2_c125s"]
+[ext_resource type="Texture2D" uid="uid://cgdjlisif6b8" path="res://graphics/BackgroundsWallpapers/grand_priest_pays_his_child_support.png" id="3_hakpi"]
+[ext_resource type="Texture2D" uid="uid://dih1ur31n0ny5" path="res://graphics/BackgroundsWallpapers/snowball_and_his_magic_juice.png" id="4_1inp8"]
+[ext_resource type="FontFile" uid="uid://dv0dtuuvlgalx" path="res://graphics/fonts/upheavtt.ttf" id="5_s58eh"]
+
+[node name="Options" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 0
+script = ExtResource("1_qo2w1")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_c125s")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_hakpi")
+
+[node name="TextureRect3" type="TextureRect" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_1inp8")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.5
+offset_top = -33.0
+offset_right = 33.5
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("5_s58eh")
+text = "Volume"
+fit_content = true
+scroll_active = false
+
+[node name="Volume" type="HSlider" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+value = 10.0
+tick_count = 1
+
+[node name="Back" type="Button" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_s58eh")
+text = "Back
+"
+
+[connection signal="pressed" from="MarginContainer/VBoxContainer/Back" to="." method="_on_back_pressed"]

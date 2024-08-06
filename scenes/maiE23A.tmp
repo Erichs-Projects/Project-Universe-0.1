@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://tba1gnq2y1ak"]
+
+[ext_resource type="PackedScene" uid="uid://cotuhj74yfpqv" path="res://scenes/map.tscn" id="1_mbf0k"]
+[ext_resource type="PackedScene" uid="uid://c12qp5ss1m86y" path="res://scenes/unit.tscn" id="2_du8hd"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Map" parent="." instance=ExtResource("1_mbf0k")]
+
+[node name="Unit" parent="." instance=ExtResource("2_du8hd")]
+move_range = 3
+move_speed = 600.0
+skin_offset = Vector2(0, 0)
