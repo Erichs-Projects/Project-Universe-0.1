@@ -1,6 +1,5 @@
 extends CanvasLayer
 @onready var Healthbar = $"CharacterInfo/TabContainer/General Info/HealthBarNode/Body/HealthBar"
-@onready var TalentsMenu = $CharacterInfo/TabContainer/Talents
 @onready var ToPLabel = $"CharacterInfo/TabContainer/General Info/MainInfo/ToPLabel"
 @onready var AGModText = $"CharacterInfo/TabContainer/General Info/Modifiers/AGmod"
 @onready var FOModText = $"CharacterInfo/TabContainer/General Info/Modifiers/FOmod"
@@ -30,7 +29,7 @@ func _ready():
 	races[race.ANDROID] = Race.new("Android", 0,2,2,0,1,0,0,4)
 	races[race.ARCOSIAN] = Race.new("Arcosian", 2,1,2,0,0,0,0,3)
 	races[race.NEOTUFFLE] = Race.new("NeoTuffle", 0,0,2,1,2,0,0,4)
-	TalentsMenu.TalentLabel.text = "Talents!"
+	
 func _on_ag_value_changed(value):
 	if character_sheet != null:
 		character_sheet.stat_increase(stat.AG, value)
@@ -170,5 +169,3 @@ func _on_more_info_item_selected(index):
 	match index:
 		0:
 			return 0
-
-

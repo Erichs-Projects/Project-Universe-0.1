@@ -634,8 +634,10 @@ sources/5 = SubResource("TileSetAtlasSource_nhdsx")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_j7es1"]
 texture = ExtResource("4_46tb6")
-texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+1:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_nhdsx"]
 tile_size = Vector2i(32, 32)
@@ -643,20 +645,80 @@ sources/0 = SubResource("TileSetAtlasSource_j7es1")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_hv565"]
 texture = ExtResource("9_86qs8")
-texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+4:0/0 = 0
+5:0/0 = 0
+6:0/0 = 0
+7:0/0 = 0
+8:0/0 = 0
+9:0/0 = 0
+10:0/0 = 0
+11:0/0 = 0
+12:0/0 = 0
+13:0/0 = 0
+14:0/0 = 0
+15:0/0 = 0
+0:1/0 = 0
+1:1/0 = 0
+2:1/0 = 0
+3:1/0 = 0
+4:1/0 = 0
+5:1/0 = 0
+6:1/0 = 0
+7:1/0 = 0
+8:1/0 = 0
+9:1/0 = 0
+10:1/0 = 0
+11:1/0 = 0
+12:1/0 = 0
+13:1/0 = 0
+14:1/0 = 0
+15:1/0 = 0
+0:2/0 = 0
+1:2/0 = 0
+2:2/0 = 0
+3:2/0 = 0
+4:2/0 = 0
+5:2/0 = 0
+6:2/0 = 0
+7:2/0 = 0
+8:2/0 = 0
+9:2/0 = 0
+10:2/0 = 0
+11:2/0 = 0
+12:2/0 = 0
+13:2/0 = 0
+14:2/0 = 0
+15:2/0 = 0
+0:3/0 = 0
+1:3/0 = 0
+2:3/0 = 0
+3:3/0 = 0
+4:3/0 = 0
+5:3/0 = 0
+6:3/0 = 0
+7:3/0 = 0
+8:3/0 = 0
+9:3/0 = 0
+10:3/0 = 0
+11:3/0 = 0
+12:3/0 = 0
+13:3/0 = 0
+14:3/0 = 0
+15:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_cdcn1"]
 tile_size = Vector2i(32, 32)
-sources/1 = SubResource("TileSetAtlasSource_hv565")
+sources/0 = SubResource("TileSetAtlasSource_hv565")
 
-[node name="LevelManager" type="Node2D" node_paths=PackedStringArray("game_map", "walk_map", "attack_map", "nav_map")]
+[node name="LevelManager" type="Node2D" node_paths=PackedStringArray("game_map", "range_map")]
 script = ExtResource("1_5xmc4")
-game_map = NodePath("Tilemaps/GameMap")
-walk_map = NodePath("Tilemaps/WalkRange")
-attack_map = NodePath("Tilemaps/AttackRange")
-nav_map = NodePath("Tilemaps/NavRange")
 tilemap_info = ExtResource("2_yicri")
+game_map = NodePath("Tilemaps/GameMap")
+range_map = NodePath("Tilemaps/WalkRange")
 
 [node name="Tilemaps" type="Node2D" parent="."]
 

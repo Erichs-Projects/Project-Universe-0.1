@@ -69,4 +69,3 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _draw() -> void:
 	draw_rect(Rect2(-tilemap_stored.cell_size / 2, tilemap_stored.cell_size), Color.LIGHT_BLUE, false, 2.0)
-

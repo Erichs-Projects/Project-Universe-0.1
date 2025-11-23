@@ -4,7 +4,10 @@ extends Node2D
 
 # Astar creation
 @onready var astar_grid: AStarGrid2D = AStarGrid2D.new()
-@export var game_map: TileMap 
+@export var game_map: TileMapLayer 
+@export var walk_map: TileMapLayer
+@export var attack_map: TileMapLayer
+@export var nav_map: TileMapLayer
 #Tilemap resources that helps the other nodes know where the tilemap blocks are
 @export var tilemap_info:= Resource
 
@@ -33,13 +36,12 @@ enum stat {AG, FO, TE, SC, IN, MA, PE}
 
 func _ready():
 	astar_grid.region = game_map.get_used_rect() # sets the size of the grid it can map to to the size of the tilemap
+	
 	astar_grid.cell_size = Vector2i(32, 32) # cell size of the grid
 	astar_grid.set_diagonal_mode(astar_grid.DIAGONAL_MODE_ONLY_IF_NO_OBSTACLES) #makes it so the Astar region doesnt map diagonally
 	astar_grid.update() # updates all these parameters into the astar grid
 	
-	#races[race.SAIYAN] = Race.new("Saiyan", 1,2,2,0,0,0,0,3)
-	#races[race.ANDROID] = Race.new("Android", 0,2,2,0,1,0,0,4)
-	#give_race = races[race.SAIYAN]
+
 	
 	#connects the walked_finished from player to level node, and calls
 	#our function _on_character_walked_finished, when 'walked_finished' is emitted from player
@@ -50,14 +52,7 @@ func _ready():
 		
 		unit.connect('walked_finished', _on_character_walked_finished)
 		
-	#$Player1.Char_race = give_race
-	#$Player1.create_npc()
-	#print("Saiyan Agility Score: ", $Player1.Character.get_score(stat.AG))
-	#print("Saiyan Speed: ", $Player1.Character.get_speed(false))
-	#$Player2.Char_race = races[race.ANDROID]
-	#$Player2.create_npc()
-	#print("Android Agility: ", $Player2.Character.get_score(stat.AG))
-	#print("Android Speed: ", $Player2.Character.get_speed(false))
+
 	
 
 	
@@ -133,22 +128,22 @@ func highlight_range_tiles():
 		#attack box
 
 func highlight_walkable_range(character, movement_range):
-	#creates a square of players walkable tiles based on their movement range
-	# the plus 1 to movement range makes up for the tile the character is standing on
+	print("Highlighting walkable range at: ", character, " with range: ", movement_range)
 	for x in range(character.x - movement_range, character.x + movement_range +1 ):
 		for y in range(character.y - movement_range, character.y + movement_range +1 ):
 			walkable_tiles.append(Vector2i(x,y))
-			game_map.set_cell(2, Vector2i(x, y), 5, Vector2i(0, 0), 0)
+			walk_map.set_cell(Vector2i(x, y), 5, Vector2i(0, 0), 0)
+	print("Total walkable tiles: ", walkable_tiles.size())	
 
 func highlight_attack_range(character, attack_range):
 	
 	for x in range(character.x - attack_range, character.x + attack_range + 1):
 		for y in range(character.y - attack_range, character.y + attack_range + 1):
-				game_map.set_cell(1, Vector2i(x, y), 1, Vector2i(0,0), 0)
+				attack_map.set_cell(Vector2i(x, y), 0, Vector2i(0,0), 0)
 				
 	for x in range(character.x - attack_range+1, character.x + attack_range):
 		for y in range(character.y - attack_range+1, character.y + attack_range):
-				game_map.erase_cell(1, Vector2i(x, y))
+				attack_map.erase_cell(Vector2i(x, y))
 
 func remove_highlights():
 	# Tells the game there are no tiles which the player can move
@@ -169,37 +164,35 @@ func _on_ui_show_attack_range(inputbool):
 			for y in range(selected_units.y - 1, selected_units.y + 2):
 				var distance = abs(x - selected_units.x) + abs(y - selected_units.y)
 				if distance-1 <= 1:
-					game_map.set_cell(1, Vector2i(x, y), 1, Vector2i(0,0), 0)
-		game_map.erase_cell(1, selected_units)			
+					attack_map.set_cell(Vector2i(x, y), 0, Vector2i(0,0), 0)
+		#game_map.erase_cell(selected_units)			
 	else:
 		remove_attack_layer()
 
 func _on_curser_moved(_new_cell):
 	var current_mos = game_map.local_to_map(get_global_mouse_position())
-	#checks if curser is in the walk region
 	if current_mos in walkable_tiles:
 		draw_astar = true
 	else:
 		draw_astar = false
-	#if the curser is in the walk region, and the player isnt already moving
 	if is_highlighted and can_walk and draw_astar:
-		#Removes the navigation trail of previous path, so the new path can show
 		remove_nav_tiles()
-		#creates a vector array of the first and last positions in the tilemap of optimal route
 		var movement_path = astar_grid.get_id_path(game_map.local_to_map(selected_unit.global_position),current_mos)
-		#takes in that array that was made from astar pathing and draws the tiles ontop of it
-		#aka draws player path
-		game_map.set_cells_terrain_connect(3,movement_path, 0, 0)
 		
-		game_map.set_cell(3, game_map.local_to_map(selected_unit.global_position), 5, Vector2i(0, 0))
+		# REPLACE THIS LINE:
+		# range_map.set_cells_terrain_connect(movement_path, 0, 0)
+		
+		# WITH THIS:
+		for tile_pos in movement_path:
+			nav_map.set_cell(tile_pos, 1, Vector2i(0, 0), 0)  # Use ID 2 for TestMovement
+		
 
 func remove_nav_tiles():
-	game_map.clear_layer(3)
+	nav_map.clear()
 func remove_walkable_tiles():
-	game_map.clear_layer(2)	
-	walkable_tiles.clear()
+	walk_map.clear()
 func remove_attack_layer():
-	game_map.clear_layer(1)
+	attack_map.clear()
 
 
 func _on_ui_character_sheet(toggle):

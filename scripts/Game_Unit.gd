@@ -9,21 +9,9 @@ var size_of_curve: int = 0
 @export var grid: Resource
 @onready var label = $PathFollow2D/Label
 @onready var path: PathFollow2D = $PathFollow2D
-@onready var _sprite: Sprite2D = $PathFollow2D/PlayerSprite
 @export var move_speed: int = 100
-@export var skin: Texture:
-	set(value):
-		skin = value
-		if not _sprite:
-			# This will resume execution after this node's _ready()
-			await ready
-		$PathFollow2D/PlayerSprite.texture = value		
-@export var skin_offset := Vector2.ZERO:
-	set(value):
-		skin_offset = value
-		if not _sprite:
-			await ready
-		_sprite.position = value
+
+
 var cell := Vector2.ZERO:
 	set(value):
 		# When changing the cell's value, we don't want to allow coordinates outside
@@ -90,4 +78,3 @@ func create_npc():
 	Character = CharacterAttributes.new(Char_race)
 	if Char_race.agility == 1:
 		label.text = "Saiyan"
-
